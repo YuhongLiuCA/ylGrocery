@@ -2,13 +2,12 @@ import { LightningElement,track } from 'lwc';
 
 export default class App extends LightningElement {
 
-    @track 
-    fruits = [];
+    @track     fruits = [];
 
-    @track
-    cart = [];
+    @track    cart = [];
 
     cartNumber = 0;
+    sortingMethod = 1;
 
     connectedCallback() {
         this.fruits = [{name: "Apple",image:"Apple.jpg",price:2.75,quantity:0,inc:"AppleInc",dec:"AppleDec"},
@@ -19,9 +18,34 @@ export default class App extends LightningElement {
         ];
     }
 
+    handleSortingChange(event) {
+        let newMethod = event.target.value;
+        this.sortingMethod = parseInt(newMethod);
+        this.changeSortingMethod(this.sortingMethod);        
+    }
+    changeSortingMethod() {
+        console.log("add sort="+this.sortingMethod);        
+        if(this.sortingMethod === 1) {            
+            this.cart.sort(function(a,b) { 
+                if(a.name < b.name) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            });
+        } else {
+            this.cart.sort(function(a,b) { 
+                if(a.name < b.name) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            });
+        }
+    }
+
     addFruitItem(event) {
         let itemId = event.target.id;
-        //console.log("ItemId="+itemId+" good");
         let index = itemId.indexOf("Inc");
         let itemName = itemId.substring(0,index);
         for(let i = 0; i < this.fruits.length; i++) {
@@ -37,13 +61,7 @@ export default class App extends LightningElement {
                 }
                 if(found === 0) {
                     this.cart.push({name: itemName, quantity: 1,image: this.fruits[i].image});
-                    this.cart.sort(function(a,b) { 
-                        if(a.name < b.name) {
-                            return -1;
-                        } else {
-                            return 1;
-                        }
-                    });
+                    this.changeSortingMethod(this.sortingMethod);                   
                 }
                 break;
             }
