@@ -45,6 +45,29 @@
     <template if:true={cartNumber}>
         <h2 class="slds-text-heading_medium">items quantity:  {cartNumber}</h2>
 
+        <!-- <template iterator:it={cart} >
+            <article class="slds-tile slds-media" key={it.value.name}>
+                <div class="slds-media__figure">
+                  <span class="slds-avatar slds-avatar_circle slds-avatar_medium">
+                    <img alt="" src={it.value.image} title="Lexee L. Jackson avatar" />
+                  </span>
+                </div>
+                <div class="slds-media__body">
+                  <h3 class="slds-tile__title slds-truncate" title="Lexee L. Jackson">
+                    <a href="#">{it.value.name}</a>
+                  </h3>
+                  <div class="slds-tile__detail">
+                    <dl class="slds-list_horizontal slds-wrap">
+                      <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">First Label:</dt>
+                      <dd class="slds-item_detail slds-truncate" title="Description for first label">Description for first label</dd>
+                      <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Second Label">Second Label:</dt>
+                      <dd class="slds-item_detail slds-truncate" title="Description for second label">Description for second label</dd>
+                    </dl>
+                  </div>
+                </div>
+              </article>
+        </template> -->
+
         <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-size_4-of-12" aria-labelledby="element-with-table-label other-element-with-table-label">
             <thead>
                 <tr class="slds-line-height_reset">
@@ -53,6 +76,9 @@
                     </th>
                     <th class="" scope="col">
                         <div class="slds-truncate" title="Account Name">Quantity</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Picture">Picture</div>
                     </th>
                 </tr>
             </thead>
@@ -66,6 +92,12 @@
                         </th>
                         <td data-label="Account Name">
                             <div class="slds-truncate" title="Cloudhub">{it.value.quantity}</div>
+                        </td>
+                        <td data-label="Picture">
+                            <button class="slds-button slds-button_icon slds-button_icon-border-filled slds-button_icon-x-small" aria-haspopup="true" tabindex="-1" title="More actions for Acme - 1,200 Widgets">
+                                <img src={it.value.image} />
+                            </button>
+                            
                         </td>
                     </tr>
                 </template>
