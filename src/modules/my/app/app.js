@@ -23,8 +23,7 @@ export default class App extends LightningElement {
         this.sortingMethod = parseInt(newMethod);
         this.changeSortingMethod(this.sortingMethod);        
     }
-    changeSortingMethod() {
-        console.log("add sort="+this.sortingMethod);        
+    changeSortingMethod() {      
         if(this.sortingMethod === 1) {            
             this.cart.sort(function(a,b) { 
                 if(a.name < b.name) {
